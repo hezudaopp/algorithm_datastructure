@@ -1,0 +1,10 @@
+Exception: STATUS_ACCESS_VIOLATION at eip=00401960
+eax=00000000 ebx=0028AC40 ecx=00000000 edx=80010544 esi=61273CC8 edi=611A1E9B
+ebp=0028AC18 esp=0028AB90 program=D:\Dropbox\WindowsApps\Sublime Text 2.0.1 x64\binary_tree_inorder_traversal.exe, pid 1608, thread main
+cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
+Stack trace:
+Frame     Function  Args
+0028AC18  00401960  (0028AC40, 0028AC3F, 800102B8, 6D377A45)
+0028AC58  004011F7  (0000002F, 00000000, 61273688, 6100763A)
+0028ACF8  6100763A  (00000000, 0028CD78, 61006C50, 00000000)
+End of stack trace

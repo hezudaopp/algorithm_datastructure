@@ -1,0 +1,9 @@
+Exception: STATUS_ACCESS_VIOLATION at eip=0040135A
+eax=0000251C ebx=004020A0 ecx=00000004 edx=00000001 esi=00402158 edi=0028AC48
+ebp=0028AC68 esp=0028AB80 program=D:\Dropbox\workspace\Datastructure\heap_sort.exe, pid 5940, thread main
+cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
+Stack trace:
+Frame     Function  Args
+0028AC68  0040135A  (00000001, 0028AC90, 80010100, 61274903)
+0028ACF8  6100763A  (00000000, 0028CD78, 61006C50, 00000000)
+End of stack trace
