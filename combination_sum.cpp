@@ -16,7 +16,7 @@ public:
             m[i] = vector<vector<int> >();
             for (int j=0; j<candidates.size(); j++) {
                 if (i < candidates[j]) {
-                    continue;
+                    break;
                 } else if (i == candidates[j]) {
                     m[i].push_back(vector<int>());
                     m[i].back().push_back(candidates[j]);
