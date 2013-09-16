@@ -74,6 +74,34 @@ void setA(A* array, int i)
 array[i].a = 2;
 }
 
+int func(unsigned int i) {
+
+	unsigned int temp = i;
+
+	temp = (temp & 0x55555555) + ((temp & 0xaaaaaaaa)>>1);
+
+	printf("%0x \n", temp);
+
+	temp = (temp & 0x33333333) + ((temp & 0xcccccccc)>>2);
+
+	printf("%0x \n", temp);
+
+	temp = (temp & 0x0f0f0f0f) + ((temp & 0xf0f0f0f0)>>4);
+
+	printf("%0x \n", temp);
+
+	temp = (temp & 0xff00ff) + ((temp & 0xff00ff00)>>8);
+
+	printf("%0x \n", temp);
+
+	temp = (temp & 0xffff) + ((temp & 0xffff0000)>>16);
+
+	printf("%0x \n", temp);
+
+	return temp;
+
+}
+
 int main()
 {
 B data[4];
@@ -89,6 +117,10 @@ for (int i = 0; i < 4; ++i)
 {
 cout<<i<<data[i].a<<data[i].b << endl;
 }
+
+unsigned int a = 0x7f530829;
+
+cout << func(a)<<endl;
 
 return 0;
 }
