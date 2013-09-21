@@ -13,9 +13,11 @@ public:
 
 	smartPoint(smartPoint<T> &t) {
 		cout << "copy construct function" << endl;
-		point = t.point;
-		refCount = t.refCount;
-		(*refCount)++;
+		if (this != &t) {
+			point = t.point;
+			refCount = t.refCount;
+			(*refCount)++;
+		}
 	}
 
 	smartPoint<T> &operator=(const smartPoint<T> &t) {
@@ -57,8 +59,11 @@ int main (char *argv[], int argc) {
 	smartPoint<int> sp1 = sp;
 	smartPoint<int> sp2(sp);
 	sp2 = sp1;
+	smartPoint<int> sp3;
 	cout << sp.getRefCount() << endl;
 	cout << sp1.getRefCount() << endl;
+	cout << sp2.getRefCount() << endl;
+	cout << sp3.getRefCount() << endl;
 	sp.printRefCountAddress();
 	sp1.printRefCountAddress();
 	sp2.printRefCountAddress();

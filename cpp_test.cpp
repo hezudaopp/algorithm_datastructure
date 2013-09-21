@@ -102,25 +102,58 @@ int func(unsigned int i) {
 
 }
 
-int main()
-{
-B data[4];
-for (int i = 0; i < 4; i++)
-{
-data[i].a = 1;
-data[i].b = 1;
-setA(data, i);
-cout << i << data[i].a << data[i].b << endl;
-}
+struct AA {
+	int a;
+	short b;
+	int c;
+	char d;
+};
 
-for (int i = 0; i < 4; ++i)
-{
-cout<<i<<data[i].a<<data[i].b << endl;
-}
+struct BB {
+	long a;
+	char b;
+	char c;
+	short e;
+	int d;
+};
 
-unsigned int a = 0x7f530829;
+int main() {
+	// cout << sizeof(AA) << endl;	//按最长字节对齐
+	// cout << sizeof(BB) << endl; 
+// B data[4];
+// for (int i = 0; i < 4; i++)
+// {
+// data[i].a = 1;
+// data[i].b = 1;
+// setA(data, i);
+// cout << i << data[i].a << data[i].b << endl;
+// }
 
-cout << func(a)<<endl;
+// for (int i = 0; i < 4; ++i)
+// {
+// cout<<i<<data[i].a<<data[i].b << endl;
+// }
+
+// unsigned int a = 0x7f530829;
+
+// cout << func(a)<<endl;
+
+	// int i = -2;
+	// int h = 2;
+	// int j = ~2+1;
+	// int k = ~(-2)+1;
+	// int x = (2^1);
+	// int t = (2^31)-3;
+	// int result = t & ~t;
+
+	// printf("%0x\n", i);
+	// printf("%0x\n", j);
+	// printf("%0x\n", h);
+	// printf("%0x\n", k);
+	// printf("%d\n", x);
+	// printf("%0x\n", x);
+	// printf("%0x\n", t);
+	// printf("%0x\n", result);
 
 return 0;
 }
