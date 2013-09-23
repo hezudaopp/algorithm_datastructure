@@ -1,57 +1,68 @@
 #include <iostream>
 #include <fstream>
-#include <vector>
+#include <map>
+#include <stack>
 
 using namespace std;
 
-#define FILENAME "2.in"
-#define OUTFILE "2.out"
+#define FILENAME "B-large-practice.in"
+#define OUTFILE "B-large-practice.out"
 
-vector<int> v;
+map<long long, long long> ps;
+map<long long, long long> qs;
 
-void buildFacbo(int size) {
-	v.push_back(1);
-	v.push_back(2);
-	for (int i=2; i<size; i++) {
-		v.push_back(v[i-1]+v[i-1]);
+void getPQOfIndex(long long index, long long &p, long long &q) {
+	long long parent = index;
+	stack<long long> parents;
+	while (ps.count(parent) == 0) {
+		parents.push(parent);
+		parent = parent>>1;
+	}
+	while (!parents.empty()) {
+		long long path = parents.top();
+		long long parent = path>>1;
+		if ((path%2) == 0) {
+			p = ps[parent];
+			q = ps[parent] + qs[parent];
+		} else {
+			p = ps[parent] + qs[parent];
+			q = qs[parent];
+		}
+		ps[path] = p;
+		qs[path] = q;
+		parents.pop();
 	}
 }
 
-void getPQOfIndex(int index, int &p, int &q) {
-	int power = 1;
-	int row = 0;
-	while (power * 2 <= index) {
-		power *= 2;
-		row++;
-	}
-	int col = index-power;
-	cout << row << " " << col << endl;
-}
-
-int getIndexOfPQ(int p, int q) {
-
-	return 0;
+long long getIndexOfPQ(long long p, long long q) {
+	if (p == q) return 1;
+	if (p > q) return 2*getIndexOfPQ(p-q, q)+1;
+	else return 2*getIndexOfPQ(p, q-p);
 }
 
 int main(char *argv[], int argc) {
-	buildFacbo(64);
+	ps[1] = 1;
+	qs[1] = 1;
 	ifstream ifs(FILENAME);
 	ofstream ofs(OUTFILE);
 	int test;
 	ifs >> test;
 	for (int t=1; t <= test; t++) {
-		int problemNumber;
+		long long problemNumber;
 		ifs >> problemNumber;
-		if (problemNumber == 1) {
-			int index;
-			ifs >> index;
-			int p, q;
-			getPQOfIndex(index, p, q);
-		} else if(problemNumber == 2) {
-			int p, q;
-			ifs >> p >> q;
-		}
 		ofs << "Case #" << t << ": ";
+		if (problemNumber == 1) {
+			long long index;
+			ifs >> index;
+			cout << index << endl;
+			long long p, q;
+			getPQOfIndex(index, p, q);
+			ofs << p << " " << q;
+		} else if(problemNumber == 2) {
+			long long p, q;
+			ifs >> p >> q;
+			ofs << getIndexOfPQ(p, q);
+		}
 		if (t!=test) ofs << endl;
 	}
 	return 0;
