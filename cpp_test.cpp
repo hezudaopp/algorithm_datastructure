@@ -145,6 +145,8 @@ int main() {
 	// int x = (2^1);
 	// int t = (2^31)-3;
 	// int result = t & ~t;
+	int t = 2^31-3;
+	cout << t << endl;
 
 	// printf("%0x\n", i);
 	// printf("%0x\n", j);
