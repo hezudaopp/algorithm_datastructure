@@ -117,7 +117,18 @@ struct BB {
 	int d;
 };
 
+struct AssignOperator {
+	AssignOperator(int _b) : size(_b) {
+	}
+	int size;
+};
+
 int main() {
+	AssignOperator a(1);
+	AssignOperator b(2);
+	b = a;
+	cout << &a << " " << &b << endl;
+	cout << b.size << endl;
 	// cout << sizeof(AA) << endl;	//按最长字节对齐
 	// cout << sizeof(BB) << endl; 
 // B data[4];
