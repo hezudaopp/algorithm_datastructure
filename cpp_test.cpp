@@ -162,30 +162,64 @@ int func(unsigned int i) {
 //     B(B &b){cout<<"5";}
 //     ~B(){cout<<"6";}
 // };
-class A{
+// class A{
+// public:
+// 	int a;
+// 	A () {}
+// 	A(const A &other) {
+// 		cout << 3 << endl;
+// 		a = other.a;
+// 	}
+// 	A(A &other) {
+// 		cout << 2 << endl;
+// 	}
+// 	A (int n) {
+// 		cout << 1 << endl;
+// 		a = n;
+// 	}
+// 	virtual ~A(){}
+// };
+
+class CMyString {
 public:
-	int a;
-	A () {}
-	A(const A &other) {
-		cout << 3 << endl;
-		a = other.a;
+	CMyString(char *pData = NULL);
+	CMyString(const CMyString &str);
+	virtual ~CMyString();
+	CMyString & operator=(const CMyString &str) {
+		// if (&str == this) return *this;	// &str == this instead of str == *this
+		// int n = strlen(str.m_pData)+1;	// do not forget  plus 1
+		// char *tmp = this->m_pData;
+		// this->m_pData = new char[n];
+		// strcpy(this->m_pData, str.m_pData);
+		// delete []tmp;
+		// tmp = NULL;	// release memory only after we alloc memory successfully
+		if (&str != this) {
+			CMyString tmp(str);	// tmp obejct will be dealloced out of if statement
+			char *tmpData = tmp.m_pData;
+			tmp.m_pData = this->m_pData;
+			this->m_pData = tmpData;
+		}
+		return *this;
 	}
-	A(A &other) {
-		cout << 2 << endl;
-	}
-	A (int n) {
-		cout << 1 << endl;
-		a = n;
-	}
-	virtual ~A(){}
+
+private:
+	char *m_pData;
 };
 
 int main() {
+	
+	// int first = 1, second = 1;
+	// for (int i=0; i<100; i++) {
+	// 	int sum = first + second;
+	// 	first = second;
+	// 	second = sum;
+	// 	cout << sum << " ";
+	// }
 	// A aa = 10;
 	// A aa(10);
 	// aa = 20;
 	// A bb = aa;
-	cout << sizeof(A) << endl;
+	// cout << sizeof(A) << endl;
 	// A* pa = B(A());
  //    delete pa;
  //    return 0;

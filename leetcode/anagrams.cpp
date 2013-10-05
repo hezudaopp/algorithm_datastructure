@@ -6,7 +6,6 @@
 
 using namespace std;
 
-class Solution {
 public:
     vector<string> anagrams(vector<string> &strs) {
         // Start typing your C/C++ solution below
