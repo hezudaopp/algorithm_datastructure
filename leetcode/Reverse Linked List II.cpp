@@ -14,12 +14,15 @@ public:
         // Note: The Solution object is instantiated only once and is reused by each test case.
         int start = 1;
         ListNode *cur = head;
+        // preNode => node before reverse nodes
         ListNode *preNode = NULL;
         while (cur && start < m) {
         	preNode = cur;
         	cur = cur->next;
         	start++;
         }
+        // pre => last node of reverse nodes
+        // cur => node after reverse nodes
         ListNode *pre = NULL;
         while (cur && start <= n) {
         	ListNode *next = cur->next;
