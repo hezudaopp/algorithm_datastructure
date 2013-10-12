@@ -207,6 +207,8 @@ private:
 };
 
 int main() {
+	cout << (1<<31) << endl;
+	cout << (-1>>2) << endl;
 	
 	// int first = 1, second = 1;
 	// for (int i=0; i<100; i++) {
