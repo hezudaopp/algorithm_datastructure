@@ -180,35 +180,70 @@ int func(unsigned int i) {
 // 	virtual ~A(){}
 // };
 
-class CMyString {
-public:
-	CMyString(char *pData = NULL);
-	CMyString(const CMyString &str);
-	virtual ~CMyString();
-	CMyString & operator=(const CMyString &str) {
-		// if (&str == this) return *this;	// &str == this instead of str == *this
-		// int n = strlen(str.m_pData)+1;	// do not forget  plus 1
-		// char *tmp = this->m_pData;
-		// this->m_pData = new char[n];
-		// strcpy(this->m_pData, str.m_pData);
-		// delete []tmp;
-		// tmp = NULL;	// release memory only after we alloc memory successfully
-		if (&str != this) {
-			CMyString tmp(str);	// tmp obejct will be dealloced out of if statement
-			char *tmpData = tmp.m_pData;
-			tmp.m_pData = this->m_pData;
-			this->m_pData = tmpData;
-		}
-		return *this;
-	}
+// class CMyString {
+// public:
+// 	CMyString(char *pData = NULL);
+// 	CMyString(const CMyString &str);
+// 	virtual ~CMyString();
+// 	CMyString & operator=(const CMyString &str) {
+// 		// if (&str == this) return *this;	// &str == this instead of str == *this
+// 		// int n = strlen(str.m_pData)+1;	// do not forget  plus 1
+// 		// char *tmp = this->m_pData;
+// 		// this->m_pData = new char[n];
+// 		// strcpy(this->m_pData, str.m_pData);
+// 		// delete []tmp;
+// 		// tmp = NULL;	// release memory only after we alloc memory successfully
+// 		if (&str != this) {
+// 			CMyString tmp(str);	// tmp obejct will be dealloced out of if statement
+// 			char *tmpData = tmp.m_pData;
+// 			tmp.m_pData = this->m_pData;
+// 			this->m_pData = tmpData;
+// 		}
+// 		return *this;
+// 	}
 
-private:
-	char *m_pData;
+// private:
+// 	char *m_pData;
+// };
+
+// struct {
+// 	uint32_t m1;
+// 	char m2;
+// }varray[2];
+
+class A{
+public:
+	int i;
+	int j;
+	A(int a):j(1),i(j+1){
+		j=a;
+		memset(this, 0, sizeof(*this));
+	}
 };
 
+void fun() {}
+
 int main() {
-	cout << (1<<31) << endl;
-	cout << (-1>>2) << endl;
+	if (cout << 1){}
+	// cout << (4&7) << endl;
+	// int i=0;
+	// for (i=0;i<10;i++)
+	// 		printf((++i%i++) ? "1" : "0");
+	// cout << sizeof(varray[0]) << endl;
+	// cout << (void *)&varray[0].m1 << endl;
+	// cout << (void *)&varray[0].m2 << endl;
+	// cout << (((char *)&varray[0]+sizeof(varray[0])) == (char *)&varray[1] )<< endl;
+	// cout << ((char *)&(varray[0].m2)+1 == (char *)&varray[1]) << endl;
+	// char c;
+	// switch(c) {}
+	// int i=5;
+	// int *p = &i;
+	// *p = 10;
+	// cout << i << *p << endl;
+	// int b[][2] = {{1,2}, {3,4}};
+	// int d[3][2] = {{1,2},{3,4}};
+	// cout << (1<<31) << endl;
+	// cout << (-1>>2) << endl;
 	
 	// int first = 1, second = 1;
 	// for (int i=0; i<100; i++) {
